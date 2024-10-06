@@ -1,7 +1,3 @@
-That's awesome! Converting your calculator project into a React app is a great step. You can adjust the documentation to reflect the React-based setup and include the changes from the original HTML/CSS/JavaScript version. Here's how you could rewrite it for your React app:
-
----
-
 # Calculator (React Version)
 
 This is a simple calculator web application built using React. It allows users to perform basic arithmetic operations such as addition, subtraction, multiplication, and division, with a focus on reusable components and state management.
