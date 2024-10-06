@@ -1,21 +1,35 @@
+
 # Calculator (React Version)
 
-This is a simple calculator web application built using React. It allows users to perform basic arithmetic operations such as addition, subtraction, multiplication, and division, with a focus on reusable components and state management.
+This is a **responsive** calculator web application built using React. It allows users to perform both basic and advanced arithmetic operations, such as addition, subtraction, multiplication, division, and a variety of scientific calculations.
 
 ![Calculator Demo](demo.gif)
 
 ## Features
 
+- Basic arithmetic operations: addition, subtraction, multiplication, and division
 - Clear the calculator's display
 - Delete the last character entered
 - Input decimal numbers
-- Perform addition, subtraction, multiplication, and division operations
 - View the previous and current operands
-- Get the computed result using React state for calculations
+- Get the computed result using React state
+- **Scientific calculator functions**:
+  - Parentheses: `()` for grouping operations
+  - EE (Exponent)
+  - Trigonometric functions: `tan`, `cos`, `sin` and their inverse functions (`tan⁻¹`, `cos⁻¹`, `sin⁻¹`)
+  - Exponential and logarithmic functions: `10^x`, `ln`, `log`
+  - Factorial: `x!`
+  - Euler's number: `e`
+  - Square root: `√`
+  - Squaring: `x²`
+  - Cube: `x³`
+  - Pi constant: `π`
+  - Reciprocal: `1/x`
+- **Responsive design**: Works on desktop and mobile devices
 
 ## Purpose
 
-This calculator was created as a demonstration of my skills in React and modern JavaScript. It highlights my ability to build web applications with reusable components, manage state effectively, and handle user events with a modern frontend framework.
+This calculator was created to showcase my skills in building a **responsive React application**. It demonstrates my understanding of React components, state management, advanced event handling, and dynamic UI updates. The scientific functions also highlight my ability to implement complex calculations and user interaction flows.
 
 ## Getting Started
 
@@ -46,13 +60,23 @@ To use the calculator locally, follow these steps:
 
 - Click the number buttons to input digits.
 - Click the operation buttons to select the desired operation.
+- Use the scientific calculator buttons for advanced calculations:
+  - `()` for parentheses
+  - `EE` for exponents
+  - Trigonometric functions: `tan`, `cos`, `sin` and their inverses (`tan⁻¹`, `cos⁻¹`, `sin⁻¹`)
+  - `10^x`, `ln`, `log` for logarithmic and exponential calculations
+  - Factorials: `x!`
+  - `e` for Euler's number
+  - Square root: `√`, squaring: `x²`, cubing: `x³`
+  - `π` for Pi constant
+  - `1/x` for reciprocals
 - Click the "=" button to compute the result.
 - Click the "AC" button to clear the calculator's display.
 - Click the "DEL" button to delete the last character entered.
 
 ## Customization
 
-You can customize the calculator's styling by modifying the `App.css` file. Adjust the colors, sizes, and layout to match your preferences.
+You can customize the calculator's styling by modifying the `App.css` file. Adjust the colors, sizes, and layout to match your preferences. The calculator is designed to be **responsive**, ensuring that it looks great on both desktop and mobile devices.
 
 ## Contributing
 
@@ -64,4 +88,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-Feel free to add more sections or tweak them based on your React-specific implementation details!
+This updated version reflects the newly added scientific functions and emphasizes the responsiveness of your calculator app!
