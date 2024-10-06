@@ -1,5 +1,5 @@
 
-# Calculator (React Version)
+# Calculator
 
 This is a **responsive** calculator web application built using React. It allows users to perform both basic and advanced arithmetic operations, such as addition, subtraction, multiplication, division, and a variety of scientific calculations.
 
@@ -85,7 +85,3 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
----
-
-This updated version reflects the newly added scientific functions and emphasizes the responsiveness of your calculator app!
