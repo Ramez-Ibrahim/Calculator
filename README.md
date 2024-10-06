@@ -3,7 +3,7 @@
 
 This is a **responsive** calculator web application built using React. It allows users to perform both basic and advanced arithmetic operations, such as addition, subtraction, multiplication, division, and a variety of scientific calculations.
 
-![Calculator Demo](demo.gif)
+![Calculator Demo](calculator-standard.png)
 
 ## Features
 
