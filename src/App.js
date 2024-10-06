@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useCalculator from './Calculator';
-import './styles.css'; // Ensure this path is correct based on your file structure
+import './styles.css';
 
 function App() {
   const {
@@ -11,44 +11,132 @@ function App() {
     appendNumber,
     chooseOperation,
     compute,
+    toggleSign,
+    appendSpecial,
   } = useCalculator();
 
-  const previousOperandRef = useRef(null);
-  const currentOperandRef = useRef(null);
+  const [icon, setIcon] = useState('science');
+  const [showAdditional, setShowAdditional] = useState(false);
+
+  const handleIconClick = () => {
+    setShowAdditional((prevShow) => !prevShow);
+    setIcon((prevIcon) => (prevIcon === 'science' ? 'calculate' : 'science'));
+  };
+
+  const handleButtonClick = (value) => {
+    if (['+', '-', 'x', '÷', '%'].includes(value)) {
+      chooseOperation(value);
+    } else if (value === '=') {
+      compute();
+    } else if (value === 'AC') {
+      clear();
+    } else if (value === '+/-') {
+      toggleSign();
+    } else if (value === 'Backspace') {
+      deleteLast();
+    } else if (value === 'π' || value === '1/x' || value === '√' || value === 'x²' || value === "x³" || value === "e" || value === "x!" || value === "log" || value === "In" || value === "xʸ" || value === "10ˣ" || value === "sin" || value === "cos" || value === "tan" || value === "sin⁻¹" || value === "cos⁻¹" || value === "tan⁻¹" || value === "EE" || value === "(" || value === ")") {
+      appendSpecial(value);
+    } else {
+      appendNumber(value);
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    const { key } = event;
+    if (key >= '0' && key <= '9') {
+      handleButtonClick(key);
+    } else if (key === '.') {
+      handleButtonClick('.');
+    } else if (key === 'Backspace') {
+      handleButtonClick('Backspace');
+    } else if (key === 'Enter' || key === '=') {
+      event.preventDefault();
+      handleButtonClick('=');
+    } else if (key === 'Escape') {
+      handleButtonClick('AC');
+    } else if (key === '+') {
+      handleButtonClick('+');
+    } else if (key === '-') {
+      handleButtonClick('-');
+    } else if (key === '*' || key === 'x') {
+      handleButtonClick('x');
+    } else if (key === '/') {
+      handleButtonClick('÷');
+    } else if (key === '%') {
+      handleButtonClick('%');
+    } else if (key === 'n') {
+      handleButtonClick('+/-');
+    }
+  };
 
   useEffect(() => {
-    if (previousOperandRef.current) {
-      previousOperandRef.current.innerText = previous;
-    }
-    if (currentOperandRef.current) {
-      currentOperandRef.current.innerText = current;
-    }
-  }, [current, previous]);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleKeyDown]);
+
+  const formatNumber = (number) => {
+    if (number === '' || number === 'Zero Error' || isNaN(number)) return number;
+    const [integer, decimal] = number.toString().split('.');
+    const formattedInteger = new Intl.NumberFormat().format(integer);
+    return decimal !== undefined ? `${formattedInteger}.${decimal}` : formattedInteger;
+  };
+
+  const mainButtons = [
+    { label: 'AC', className: 'accent2' },
+    { label: '+/-', className: 'accent2' },
+    { label: '%', className: 'accent2' },
+    { label: '÷', className: 'accent1' },
+    { label: '7' },
+    { label: '8' },
+    { label: '9' },
+    { label: 'x', className: 'accent1' },
+    { label: '4' },
+    { label: '5' },
+    { label: '6' },
+    { label: '-', className: 'accent1' },
+    { label: '1' },
+    { label: '2' },
+    { label: '3' },
+    { label: '+', className: 'accent1' },
+    { label: '0', className: 'span-two' },
+    { label: '.' },
+    { label: '=', className: 'accent1' },
+  ];
+
+  const additionalButtons = [
+    '(', ')', 'x²', 'x³', '10ˣ', '1/x', '√', 'In', 'log', 'x!', 'π', 'xʸ', 'sin', 'cos', 'tan', 'e', 'sin⁻¹', 'cos⁻¹', 'tan⁻¹', 'EE' 
+  ];
 
   return (
     <div className="calculator-grid">
       <div className="output">
-        <div data-previous-operand ref={previousOperandRef} className="previous-operand"></div>
-        <div data-current-operand ref={currentOperandRef} className="current-operand"></div>
+        <span className="material-symbols-outlined icon" onClick={handleIconClick}>
+          {icon}
+        </span>
+        <div className="previous-operand">{formatNumber(previous)}</div>
+        <div className="current-operand">{formatNumber(current)}</div>
       </div>
-      <button className="span-two" onClick={clear}>AC</button>
-      <button onClick={deleteLast}>DEL</button>
-      <button onClick={() => chooseOperation("÷")}>÷</button>
-      <button onClick={() => appendNumber("1")}>1</button>
-      <button onClick={() => appendNumber("2")}>2</button>
-      <button onClick={() => appendNumber("3")}>3</button>
-      <button onClick={() => chooseOperation("*")}>*</button>
-      <button onClick={() => appendNumber("4")}>4</button>
-      <button onClick={() => appendNumber("5")}>5</button>
-      <button onClick={() => appendNumber("6")}>6</button>
-      <button onClick={() => chooseOperation("+")}>+</button>
-      <button onClick={() => appendNumber("7")}>7</button>
-      <button onClick={() => appendNumber("8")}>8</button>
-      <button onClick={() => appendNumber("9")}>9</button>
-      <button onClick={() => chooseOperation("-")}>-</button>
-      <button onClick={() => appendNumber(".")}>.</button>
-      <button onClick={() => appendNumber("0")}>0</button>
-      <button className="span-two" onClick={compute}>=</button>
+      {showAdditional
+        ? additionalButtons.map((btn, index) => (
+            <button
+              key={index}
+              className="additional-button"
+              onClick={() => handleButtonClick(btn)}
+            >
+              {btn}
+            </button>
+          ))
+        : mainButtons.map((btn, index) => (
+            <button
+              key={index}
+              className={btn.className || ''}
+              onClick={() => handleButtonClick(btn.label)}
+            >
+              {btn.label}
+            </button>
+          ))}
     </div>
   );
 }

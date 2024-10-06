@@ -1,63 +1,262 @@
 /* Global styles */
 *, *::before, *::after {
-    box-sizing: border-box; /* Ensures consistent box sizing for all elements */
-    font-family: Gotham Rounded, sans-serif; /* Sets the font family for all elements */
-    font-weight: normal; /* Sets normal font weight for all elements */
-  }
-  
-  /* Body styles */
-  body {
-    padding: 0;
-    margin: 0;
-    background: linear-gradient(to right, #00AAFF, #00FF6C); /* Sets a linear gradient background color */
-  }
-  
-  /* Calculator grid styles */
+  box-sizing: border-box;
+  font-family: 'Gotham Rounded', sans-serif;
+  font-weight: normal;
+}
+
+/* Body styles */
+body {
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(to right, #00AAFF, #00FF6C);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Wrapper to help with centering */
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Calculator container styles */
+.calculator-container {
+  display: flex;
+  transition: width 1s ease;
+}
+
+/* Calculator grid styles */
+.calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 85px);
+  grid-template-rows: minmax(120px, auto) repeat(5, 85px);
+  transition: grid-template-columns 1s ease;
+}
+
+/* Button styles */
+.calculator-grid > button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px solid white;
+  outline: none;
+  background-color: rgba(255, 255, 255, .75);
+  transition: all 0.5s ease-in-out;
+}
+
+.calculator-grid > button:hover {
+  background-color: rgba(255, 255, 255, .9);
+}
+
+.calculator-grid > button:active {
+  transform: scale(0.95);
+}
+
+.calculator-grid > button.accent1 {
+  background-color: rgb(255, 165, 0);
+  color: black;
+}
+
+.calculator-grid > button.accent1:hover,
+.calculator-grid > button.accent1:active {
+  background-color: rgb(255, 200, 60);
+}
+
+.calculator-grid > button.accent2 {
+  background-color: rgba(0, 150, 255, .75);
+  color: black;
+}
+
+.calculator-grid > button.accent2:hover,
+.calculator-grid > button.accent2:active {
+  background-color: rgba(0, 191, 255, .99);
+}
+
+.span-two {
+  grid-column: span 2;
+  padding-right: 85px;
+}
+
+.output .previous-operand {
+  color: rgba(255, 255, 255, .75);
+  font-size: 1.5rem;
+}
+
+.output .current-operand {
+  color: white;
+  font-size: 2.5rem;
+}
+
+/* Media Queries for 6.1-inch Screens */
+@media (max-width: 390px) and (max-height: 844px) {
   .calculator-grid {
-    display: grid; /* Sets the display type to grid */
-    justify-content: center; /* Centers the grid horizontally */
-    align-content: center; /* Centers the grid vertically */
-    min-height: 100vh; /* Sets the minimum height of the grid to the full viewport height */
-    grid-template-columns: repeat(4, 85px); /* Sets the grid columns to repeat 4 times with a width of 85px each */
-    grid-template-rows: minmax(120px, auto) repeat(5, 85px); /* Sets the grid rows with a minimum height of 120px for the output and 85px for the buttons */
+    grid-template-columns: repeat(4, 60px);
+    grid-template-rows: minmax(100px, auto) repeat(5, 60px);
   }
-  
+
   .calculator-grid > button {
-    cursor: pointer; /* Sets a pointer cursor for the buttons */
-    font-size: 2rem; /* Sets the font size for the buttons */
-    border: 1px solid white; /* Sets a white border for the buttons */
-    outline: none; /* Removes the outline on focus */
-    background-color: rgba(255, 255, 255, .75); /* Sets the background color for the buttons */
+    font-size: 1.5rem;
   }
-  
-  .calculator-grid > button:hover {
-    background-color: rgba(255, 255, 255, .9); /* Sets the background color for the buttons on hover */
-  }
-  
+
   .span-two {
-    grid-column: span 2; /* Spans the button across 2 grid columns */
+    padding-right: 60px;
   }
-  
-  /* Output styles */
-  .output {
-    grid-column: 1 / -1; /* Sets the output element to span across all grid columns */
-    background-color: rgba(0, 0, 0, .75); /* Sets the background color for the output element */
-    display: flex; /* Sets the display type to flex */
-    align-items: flex-end; /* Aligns the content at the bottom of the output element */
-    justify-content: space-around; /* Distributes the content evenly along the horizontal axis */
-    flex-direction: column; /* Sets the flex direction to column */
-    padding: 10px; /* Adds padding to the output element */
-    word-wrap: break-word; /* Allows long words to break and wrap to the next line */
-    word-break: break-all; /* Breaks words at any character to fit within the container */
-  }
-  
+
   .output .previous-operand {
-    color: rgba(255, 255, 255, .75); /* Sets the color for the previous operand */
-    font-size: 1.5rem; /* Sets the font size for the previous operand */
+    font-size: 1.2rem;
   }
-  
+
   .output .current-operand {
-    color: white; /* Sets the color for the current operand */
-    font-size: 2.5rem; /* Sets the font size for the current operand */
+    font-size: 2rem;
   }
-  
+}
+
+/* Media Queries for 6.7-inch Screens */
+@media (max-width: 428px) and (max-height: 926px) {
+  .calculator-grid {
+    grid-template-columns: repeat(4, 70px);
+    grid-template-rows: minmax(110px, auto) repeat(5, 70px);
+  }
+
+  .calculator-grid > button {
+    font-size: 1.8rem;
+  }
+
+  .span-two {
+    padding-right: 70px;
+  }
+
+  .output .previous-operand {
+    font-size: 1.3rem;
+  }
+
+  .output .current-operand {
+    font-size: 2.2rem;
+  }
+}
+
+/* Media Queries for 14-inch Screens */
+@media (min-width: 1366px) and (max-width: 1920px) {
+  .calculator-grid {
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(130px, auto) repeat(5, 100px);
+  }
+
+  .calculator-grid > button {
+    font-size: 2.2rem;
+  }
+
+  .span-two {
+    padding-right: 100px;
+  }
+
+  .output .previous-operand {
+    font-size: 1.7rem;
+  }
+
+  .output .current-operand {
+    font-size: 2.7rem;
+  }
+}
+
+/* Media Queries for 16-inch Screens */
+@media (min-width: 1921px) and (max-width: 2560px) {
+  .calculator-grid {
+    grid-template-columns: repeat(4, 120px);
+    grid-template-rows: minmax(150px, auto) repeat(5, 120px);
+  }
+
+  .calculator-grid > button {
+    font-size: 2.5rem;
+  }
+
+  .span-two {
+    padding-right: 120px;
+  }
+
+  .output .previous-operand {
+    font-size: 2rem;
+  }
+
+  .output .current-operand {
+    font-size: 3rem;
+  }
+}
+
+/* Media Queries for iPad 6th generation (768px width and 1024px height) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  body {
+    padding-bottom: 20px;
+  }
+
+  .calculator-grid {
+    grid-template-columns: repeat(4, 60px);
+    grid-template-rows: minmax(100px, auto) repeat(5, 60px);
+  }
+
+  .calculator-grid > button {
+    font-size: 1.5rem;
+  }
+
+  .span-two {
+    padding-right: 60px;
+  }
+
+  .output .previous-operand {
+    font-size: 1.2rem;
+  }
+
+  .output .current-operand {
+    font-size: 2rem;
+  }
+}
+
+.output {
+  position: relative;
+  grid-column: 1 / -1;
+  background-color: rgba(0, 0, 0, .75);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 10px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+/* Icon styles */
+.icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  font-size: 1.8rem;
+  color: white;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
+
+button.accent1.additional-button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px solid white;
+  outline: none;
+  background-color: rgba(255, 255, 255, .75);
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+button.accent2.additional-button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px solid white;
+  outline: none;
+  background-color: rgba(255, 255, 255, .75);
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
