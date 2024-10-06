@@ -24,13 +24,13 @@ To use the calculator locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/ramez08/react-calculator.git
+   git clone https://github.com/Ramez-Ibrahim/calculator.git
    ```
 
 2. Navigate to the project directory and install dependencies:
 
    ```bash
-   cd react-calculator
+   cd src
    npm install
    ```
 
